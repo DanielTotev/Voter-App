@@ -2,7 +2,7 @@ const path = require('path');
 
 let rootPath = path.normalize(path.join(__dirname, '/../../'));
 let port = process.env.PORT || 1337;
-let db = 'mongodb://localhost:27017/gameShop';
+let db = 'mongodb://localhost:27017/votingApp';
 
 module.exports = {
     development: {
