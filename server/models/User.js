@@ -28,7 +28,7 @@ module.exports.seedAdminUser = () => {
 
         User.create({
             email: 'Admin',
-            fullName: 'Admin',
+            username: 'Admin',
             salt: salt,
             hashedPass: hashedPass,
             roles: ['Admin']
