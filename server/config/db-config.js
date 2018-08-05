@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 let User = require('../models/User');
+require('../models/Option');
+require('../models/Poll');
+require('../models/Category');
 
 
 module.exports = (settings) => {
