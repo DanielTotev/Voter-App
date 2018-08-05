@@ -4,11 +4,15 @@ const encryption = require('./../utils/encryption');
 
 module.exports = {
     register: (req, res) => {
-        let { email, fullName, password, repeatPass } = req.body;
+        let { email, username, password, repeatPass } = req.body;
 
-        if (!email || email == '' || !fullName || fullName == '' || !password || password == '') {
+        if (!email || email == '' || !username || username == '' || !password || password == '') {
             res.status(400).send({ message: 'All fields must be field' });
             return;
+        }
+
+        if(username.length < 4) {
+            res.status(400).send({ message: 'Username must be atleast 4 symbols long' });
         }
 
         if (password != repeatPass) {
@@ -18,10 +22,10 @@ module.exports = {
 
         let salt = encryption.generateSalt();
         let hashedPass = encryption.generateHashedPassword(salt, password);
-        console.log(email + ' ' + fullName + ' ' + password);
+        console.log(email + ' ' + username + ' ' + password);
         User.create({
             email,
-            fullName,
+            username,
             salt,
             hashedPass,
             roles: [],
