@@ -32,7 +32,7 @@ module.exports = {
                     })
                     .catch(err => {
                         console.log(err);
-                        return res.status(400).json({ message: 'Something wnet wrong' });
+                        return res.status(400).json({ message: 'Something went wrong' });
                     })
             })
             .catch(err => {
@@ -41,6 +41,33 @@ module.exports = {
     },
 
     vote: (req, res) => {
+        let pollId = req.body.id;
+        let selectedOption = req.body.optionName;
+        
+        Category.findById(pollId)
+            .then(poll => {
+                if(!poll) {
+                    return res.status(400).json({ message: 'This poll does not exist anymore' });
+                }
+                let optionExists = false;
 
+                for(let option of poll.options) {
+                    if(option.name === selectedOption) {
+                        option.points = option.points + 1;
+                        optionExists = true;
+                        break;
+                    }
+                }
+
+                if(!optionExists) {
+                    return res.status(400).json({ message: 'Invalid option selected' });
+                }
+
+                poll.save()
+                    .then(() => {
+                        res.status(200).json({ message: 'Your vote has been accepted'});
+                    })
+            })
+            .catch(err => console.log(err));
     }
 };
