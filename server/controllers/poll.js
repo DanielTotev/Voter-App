@@ -69,5 +69,11 @@ module.exports = {
                     })
             })
             .catch(err => console.log(err));
+    },
+    edit: (req, res) => {
+
+    },
+    deletePoll: (req, res) => {
+
     }
 };
