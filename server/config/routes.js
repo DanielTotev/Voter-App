@@ -5,7 +5,9 @@ module.exports = (app) => {
     app.post('/user/login', CONTROLLERS.USER_CONTROLLER.login);
     app.post('/user/register', CONTROLLERS.USER_CONTROLLER.register);
 
-    app.post('/category/create', AUTH_CHECK, CONTROLLERS.CATEGORY_CONTROLLER.create)
+    app.post('/category/create', AUTH_CHECK, CONTROLLERS.CATEGORY_CONTROLLER.create);
+
+    app.post('/poll/create', AUTH_CHECK, CONTROLLERS.POLL_CONTROLLER.create);
 
     console.log('All routes are set');
 }

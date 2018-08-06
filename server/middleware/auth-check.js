@@ -13,14 +13,14 @@ module.exports = (req, res, next) => {
 	// decode the token using a secret key-phrase
 	return jwt.verify(token, 's0m3 r4nd0m str1ng', (err, decoded) => {
 		// the 401 code is for unauthorized status
-		if (err) { return res.status(401).end(); }
+		if (err) { return res.status(401).send({'message': 'Unauthorized'}) }
 
 		const userId = decoded.payload.sub;
 		User
 			.findById(userId)
 			.then((user) => {
 				if (!user) {
-					return res.status(401).end()
+					return res.status(401).send({'message': 'Unauthorized'})
 				}
 				req.user = user
 				next();
