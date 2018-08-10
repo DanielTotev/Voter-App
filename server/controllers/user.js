@@ -15,10 +15,10 @@ module.exports = {
             res.status(400).send({ message: 'Username must be atleast 4 symbols long' });
         }
 
-        if (password != repeatPass) {
-            res.status(400).send({ message: 'Both passwords should match!' });
-            return;
-        }
+        // if (password != repeatPass) {
+        //     res.status(400).send({ message: 'Both passwords should match!' });
+        //     return;
+        // }
 
         let salt = encryption.generateSalt();
         let hashedPass = encryption.generateHashedPassword(salt, password);
@@ -41,7 +41,7 @@ module.exports = {
             };
 
             let token = jwt.sign({ payload }, 's0m3 r4nd0m str1ng');
-            res.status(200).send({ user: user, authtoken: token });
+            res.status(200).send({ user: user, authtoken: token, message: 'Registered successfully!' });
         });
     },
 
@@ -66,7 +66,7 @@ module.exports = {
                 };
 
                 let token = jwt.sign({ payload }, 's0m3 r4nd0m str1ng');
-                res.status(200).send({ user: user, authtoken: token });
+                res.status(200).send({ user: user, authtoken: token, message: 'Logged in successfully!' });
             });
     }
 };

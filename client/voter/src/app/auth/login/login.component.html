@@ -1,3 +1,17 @@
-<p>
-  login works!
-</p>
+<div class="container">
+  <div *ngIf="loginFailed" class="alert alert-danger">
+  </div>
+  <h1>Login Form</h1>
+  <form #form="ngForm" (submit)="login()">
+    <div class="form-group">
+      <label for="email">email</label>
+      <input type="text" class="form-control" id="email" name="email" [(ngModel)]="formData.email" #email="ngModel" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" name="password" [(ngModel)]="formData.password" #passowrd="ngModel"
+        required>
+    </div>
+    <button [disabled]="!form.valid" type="submit" class="btn btn-success">Login</button>
+  </form>
+</div>
