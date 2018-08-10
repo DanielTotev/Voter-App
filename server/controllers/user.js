@@ -31,7 +31,7 @@ module.exports = {
             roles: [],
         }).then((user, err) => {
             if (err) {
-                res.status(400).send({ message: err.message });
+                res.status(401).send({ message: err.message });
                 return;
             }
             // create a token
@@ -50,13 +50,13 @@ module.exports = {
         User.findOne({ email: reqUser.email })
             .then(user => {
                 if (!user) {
-                    res.status(400).send({ message: 'Invalid credentials' });
+                    res.status(401).send({ message: 'Invalid credentials' });
                     return;
                 }
                 let salt = user.salt;
                 let hashedPass = user.hashedPass;
                 if (encryption.generateHashedPassword(salt, reqUser.password) !== hashedPass) {
-                    res.status(400).send({ message: 'Invalid credentials' });
+                    res.status(401).send({ message: 'Invalid credentials' });
                     return;
                 }
                 // create a token

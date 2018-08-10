@@ -1,10 +1,10 @@
 <div class="container">
   <div *ngIf="loginFailed" class="alert alert-danger">
   </div>
-  <h1>Login Form</h1>
+  <h1>Login</h1>
   <form #form="ngForm" (submit)="login()">
     <div class="form-group">
-      <label for="email">email</label>
+      <label for="email">Email</label>
       <input type="text" class="form-control" id="email" name="email" [(ngModel)]="formData.email" #email="ngModel" required>
     </div>
     <div class="form-group">

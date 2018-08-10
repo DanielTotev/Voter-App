@@ -7,9 +7,10 @@ import { PollAllComponent } from './poll/poll-all/poll-all.component';
 import { AuthModule } from './auth/auth.module';
 import { AppRouting } from './app.routing';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { SuccessInterceptor } from './interceptors/success.interceptor';
+import { MessagingInterceptor } from './interceptors/messaging.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,12 @@ import { ToastrModule } from 'ngx-toastr';
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: SuccessInterceptor,
+      useClass: MessagingInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
       multi: true
     },
   ],

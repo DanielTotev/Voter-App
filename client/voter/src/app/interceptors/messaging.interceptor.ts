@@ -1,4 +1,4 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import {ToastrService} from 'ngx-toastr';
@@ -7,7 +7,7 @@ import {Injectable} from '@angular/core';
 @Injectable({
     providedIn: 'root'
 })
-export class SuccessInterceptor implements HttpInterceptor {
+export class MessagingInterceptor implements HttpInterceptor {
     constructor(private toastr: ToastrService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
