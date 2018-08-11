@@ -96,5 +96,18 @@ module.exports = {
             .then(polls => {
                 res.status(200).json(polls)
             })
+    },
+
+    getById: (req, res) => {
+        let id = req.body.id;
+
+        Poll.findById(id)
+            .then(poll => {
+                res.status(200).json(poll);
+            })
+            .catch((err) => {
+                console.log(err);
+                res.status(400).json({ message: 'Poll not found!'})
+            })
     }
 };

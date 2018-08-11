@@ -9,7 +9,7 @@ module.exports = (app) => {
 
     app.post('/poll/create', AUTH_CHECK, CONTROLLERS.POLL_CONTROLLER.create);
     app.get('/poll/getAll', CONTROLLERS.POLL_CONTROLLER.getAll);
-
+    app.get('/poll/getById', CONTROLLERS.POLL_CONTROLLER.getById);
     app.post('/poll/vote', AUTH_CHECK, CONTROLLERS.POLL_CONTROLLER.vote);
 
     console.log('All routes are set');

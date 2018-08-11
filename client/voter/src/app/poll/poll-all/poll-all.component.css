@@ -2,3 +2,8 @@ img{
    width: 200px;
    height: 200px; 
 }
+
+.card {
+    height: 320px;
+    width: 250px;
+}

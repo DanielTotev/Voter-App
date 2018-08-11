@@ -18,7 +18,6 @@
         </div>
     </div>
     <div class="row space-top">
-
         <div class="col-md-4 mt-3" *ngFor="let p of polls">
             <div class="card text-white bg-primary">
                 <div class="card-body">
@@ -26,7 +25,7 @@
                     <blockquote class="card-blockquote">
                         <img src="./../../../assets/poll.jpg" />
                         <div class="pull-right">
-                            <a *ngIf="authService.isLoggedIn()" routerLink="/poll/vote/{{p.id}}" class="btn btn-info">Vote</a>
+                            <a *ngIf="authService.isLoggedIn()" routerLink="/poll/vote/{{p._id}}" class="btn btn-info">Vote</a>
                         </div>
                     </blockquote>
                 </div>

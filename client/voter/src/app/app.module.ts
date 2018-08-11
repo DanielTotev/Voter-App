@@ -12,12 +12,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { FormsModule } from '@angular/forms';
+import { PollVoteComponent } from './poll/poll-vote/poll-vote.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     PollAllComponent,
+    PollVoteComponent,
   ],
   imports: [
     BrowserModule,
