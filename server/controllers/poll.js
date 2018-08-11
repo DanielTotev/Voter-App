@@ -71,9 +71,30 @@ module.exports = {
             .catch(err => console.log(err));
     },
     edit: (req, res) => {
+        if (!req.user || req.user.roles[0] !== 'Admin') {
+            return res.status(401).json({ message: 'Not authorized' });
+        }
 
     },
     deletePoll: (req, res) => {
+        if (!req.user || req.user.roles[0] !== 'Admin') {
+            return res.status(401).json({ message: 'Not authorized' });
+        }
 
+        let id = req.params.id;
+        Poll.findOneAndRemove({ _id: id })
+            .then(() => {
+                res.status(200).send({ message: 'Poll deleted successfully'});
+            })
+            .catch(err => {
+                res.status(400).send({ message: 'Poll does not exists'});
+            })
+    },
+
+    getAll: (req, res) => {
+        Poll.find({})
+            .then(polls => {
+                res.status(200).json(polls)
+            })
     }
 };

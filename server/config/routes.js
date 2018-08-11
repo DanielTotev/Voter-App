@@ -8,6 +8,7 @@ module.exports = (app) => {
     app.post('/category/create', AUTH_CHECK, CONTROLLERS.CATEGORY_CONTROLLER.create);
 
     app.post('/poll/create', AUTH_CHECK, CONTROLLERS.POLL_CONTROLLER.create);
+    app.get('/poll/getAll', CONTROLLERS.POLL_CONTROLLER.getAll);
 
     app.post('/poll/vote', AUTH_CHECK, CONTROLLERS.POLL_CONTROLLER.vote);
 

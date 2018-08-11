@@ -15,7 +15,7 @@ const LOGIN_URL = `${BASE_URL}user/login`;
 })
 export class AuthService { 
     user: UserModel;
-    authtoken: string;
+    authtoken: string = null;
 
     constructor (private http: HttpClient, private router: Router) { }
 
@@ -37,6 +37,11 @@ export class AuthService {
 
     isAdmin() {
         return this.user && this.user.roles.includes('Admin');
+    }
+
+    logout() {
+        this.authtoken = null;
+        this.user = null;
     }
 
     private saveUser(data) {

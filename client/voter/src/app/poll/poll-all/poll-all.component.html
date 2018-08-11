@@ -1,3 +1,37 @@
-<p>
-  poll-all works!
-</p>
+<div class="jumbotron">
+    <div class="container">
+        <h1>Search by category</h1>
+        <p>Search by category using the form below:</p>
+        <form #form="ngForm" (submit)="search(form.value)">
+            <input type="text" class="form-control" name="search" ngModel>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row space-top">
+        <div class="col-md-12">
+            <h1>Welcome to Voter App</h1>
+            <p>In order to vote you shold be logged in.</p>
+        </div>
+    </div>
+    <div class="row space-top">
+
+        <div class="col-md-4 mt-3" *ngFor="let p of polls">
+            <div class="card text-white bg-primary">
+                <div class="card-body">
+                    <p>{{p.title}}</p>
+                    <blockquote class="card-blockquote">
+                        <img src="./../../../assets/poll.jpg" />
+                        <div class="pull-right">
+                            <a *ngIf="authService.isLoggedIn()" routerLink="/poll/vote/{{p.id}}" class="btn btn-info">Vote</a>
+                        </div>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

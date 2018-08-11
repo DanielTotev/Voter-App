@@ -11,6 +11,7 @@ import { MessagingInterceptor } from './interceptors/messaging.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    FormsModule
   ],
   providers: [
     {
