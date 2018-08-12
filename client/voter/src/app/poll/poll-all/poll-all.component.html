@@ -3,8 +3,8 @@
         <h1>Search by category</h1>
         <p>Search by category using the form below:</p>
         <form #form="ngForm" (submit)="search(form.value)">
-            <input type="text" class="form-control" name="search" ngModel>
-            <button type="submit" class="btn btn-primary">Search</button>
+            <input type="text" class="form-control" name="category" required ngModel>
+            <button [disabled]="!form.valid" type="submit" class="btn btn-primary">Search</button>
         </form>
     </div>
 </div>

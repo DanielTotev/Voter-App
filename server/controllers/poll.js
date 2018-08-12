@@ -99,7 +99,7 @@ module.exports = {
     },
 
     getById: (req, res) => {
-        let id = req.body.id;
+        let id = req.params.id;
 
         Poll.findById(id)
             .then(poll => {

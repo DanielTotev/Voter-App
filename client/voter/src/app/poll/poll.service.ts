@@ -16,4 +16,8 @@ export class PollService {
     getAll(): Observable<PollModel[]> {
         return this.http.get<PollModel[]>(BASE_URL + GET_ALL);
     }
+
+    getById(id: string): Observable<PollModel> {
+        return this.http.get<PollModel>(BASE_URL + '/' + id);
+    }
 }

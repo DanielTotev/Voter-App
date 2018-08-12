@@ -1,3 +1,12 @@
-<p>
-  poll-vote works!
-</p>
+<fieldset *ngIf="poll">
+  <legend>{{poll.title}}</legend>
+  <form #form="ngForm" (ngSubmit)="vote(form)">
+    <div class="form-group">
+      <div *ngFor="let option of poll.options" class="custom-control custom-radio">
+        <input type="radio" name="option" id="{{option.name}}" class="custom-control-input">
+        <label class="custom-control-label" for="{{option.name}}">{{option.name}}</label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit your vote</button>
+  </form>
+</fieldset>

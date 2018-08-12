@@ -9,7 +9,8 @@ import { AuthService } from '../../auth/auth.service';
   styleUrls: ['./poll-all.component.css']
 })
 export class PollAllComponent implements OnInit {
-  polls: PollModel[]
+  polls: PollModel[];
+  initialPolls: PollModel[];
 
   constructor(private pollService: PollService, private authService: AuthService) { }
 
@@ -17,8 +18,13 @@ export class PollAllComponent implements OnInit {
     this.pollService.getAll()
       .subscribe(data => {
         this.polls = data;
+        this.initialPolls = data;
         console.log(this.polls);
       });
   }
 
+  search(formData) {
+    let category = formData['category'];
+    this.polls = this.initialPolls.filter(x => x.category === category);
+  }
 }
