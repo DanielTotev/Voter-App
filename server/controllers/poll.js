@@ -53,7 +53,7 @@ module.exports = {
         let pollId = req.body.id;
         let selectedOption = req.body.optionName;
 
-        Category.findById(pollId)
+        Poll.findById(pollId)
             .then(poll => {
                 if (!poll) {
                     return res.status(400).json({ message: 'This poll does not exist anymore' });
@@ -61,25 +61,30 @@ module.exports = {
                 let optionExists = false;
 
                 for (let option of poll.options) {
+                    console.log(poll.options);
                     if (option.name === selectedOption) {
+                        console.log(option);
                         option.points = option.points + 1;
                         optionExists = true;
+                        console.log(option);
                         break;
                     }
                 }
+                console.log(poll.options);
 
                 if (!optionExists) {
                     return res.status(400).json({ message: 'Invalid option selected' });
                 }
 
-                poll.save()
-                    .then(() => {
-                        pusher.trigger('poll', 'vote', {
-                            points: 1,
-                            option: selectedOption
-                        });
-                        res.status(200).json({ message: 'Your vote has been accepted' });
-                    })
+                poll.markModified('options');
+                poll.save(function (err) {
+                    if(err) throw new Error(err.message);
+                    pusher.trigger('poll', 'vote', {
+                        points: 1,
+                        option: selectedOption
+                    });
+                    res.status(200).json({ message: 'Your vote has been accepted' });
+                });
             })
             .catch(err => console.log(err));
     },

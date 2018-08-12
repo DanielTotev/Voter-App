@@ -6,6 +6,7 @@ import { Observable } from '../../../node_modules/rxjs';
 const BASE_URL = 'http://localhost:1337/poll';
 
 const GET_ALL = '/getALL';
+const VOTE = '/vote';
 
 @Injectable({
     providedIn: 'root'
@@ -19,5 +20,9 @@ export class PollService {
 
     getById(id: string): Observable<PollModel> {
         return this.http.get<PollModel>(BASE_URL + '/' + id);
+    }
+
+    vote(selectedOption, pollid) {
+        return this.http.post(BASE_URL + VOTE, { optionName: selectedOption, id: pollid})
     }
 }

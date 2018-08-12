@@ -26,7 +26,7 @@ export class PollVoteComponent implements OnInit {
 
         let dataPoints = [];
         for (let option of this.poll.options) {
-          dataPoints.push({ label: option['name'], y: option['points'] + 10 })
+          dataPoints.push({ label: option['name'], y: option['points'] })
         }
 
         let chart = new CanvasJS.Chart("chartContainer", {
@@ -53,7 +53,7 @@ export class PollVoteComponent implements OnInit {
         const channel = pusher.subscribe('poll');
         channel.bind('vote', function (data) {
           dataPoints = dataPoints.map(x => {
-            if (x.label === data.os) {
+            if (x.label === data.option) {
               x.y += data.points;
             }
 
@@ -65,7 +65,7 @@ export class PollVoteComponent implements OnInit {
   }
 
   vote() {
-    console.log(this.selectedOption);
+    this.pollService.vote(this.selectedOption, this.poll._id).subscribe();
   }
 
 }
