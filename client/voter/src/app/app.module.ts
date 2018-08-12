@@ -13,6 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { FormsModule } from '@angular/forms';
 import { PollVoteComponent } from './poll/poll-vote/poll-vote.component';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,11 @@ import { PollVoteComponent } from './poll/poll-vote/poll-vote.component';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
       multi: true
     },
   ],

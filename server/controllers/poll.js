@@ -1,5 +1,14 @@
 const Poll = require('./../models/Poll');
 const Category = require('./../models/Category');
+const Pusher = require('pusher');
+
+const pusher = new Pusher({
+    appId: '572498',
+    key: '17f5653de317564ed3b2',
+    secret: '6a2d5e4c14cd52def86a',
+    cluster: 'eu',
+    encrypted: true
+});
 
 module.exports = {
     create: (req, res) => {
@@ -43,29 +52,33 @@ module.exports = {
     vote: (req, res) => {
         let pollId = req.body.id;
         let selectedOption = req.body.optionName;
-        
+
         Category.findById(pollId)
             .then(poll => {
-                if(!poll) {
+                if (!poll) {
                     return res.status(400).json({ message: 'This poll does not exist anymore' });
                 }
                 let optionExists = false;
 
-                for(let option of poll.options) {
-                    if(option.name === selectedOption) {
+                for (let option of poll.options) {
+                    if (option.name === selectedOption) {
                         option.points = option.points + 1;
                         optionExists = true;
                         break;
                     }
                 }
 
-                if(!optionExists) {
+                if (!optionExists) {
                     return res.status(400).json({ message: 'Invalid option selected' });
                 }
 
                 poll.save()
                     .then(() => {
-                        res.status(200).json({ message: 'Your vote has been accepted'});
+                        pusher.trigger('poll', 'vote', {
+                            points: 1,
+                            option: selectedOption
+                        });
+                        res.status(200).json({ message: 'Your vote has been accepted' });
                     })
             })
             .catch(err => console.log(err));
@@ -84,10 +97,10 @@ module.exports = {
         let id = req.params.id;
         Poll.findOneAndRemove({ _id: id })
             .then(() => {
-                res.status(200).send({ message: 'Poll deleted successfully'});
+                res.status(200).send({ message: 'Poll deleted successfully' });
             })
             .catch(err => {
-                res.status(400).send({ message: 'Poll does not exists'});
+                res.status(400).send({ message: 'Poll does not exists' });
             })
     },
 
@@ -107,7 +120,7 @@ module.exports = {
             })
             .catch((err) => {
                 console.log(err);
-                res.status(400).json({ message: 'Poll not found!'})
+                res.status(400).json({ message: 'Poll not found!' })
             })
     }
 };

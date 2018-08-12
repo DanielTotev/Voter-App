@@ -3,6 +3,7 @@ import { PollModel } from '../models/poll.model';
 import { PollService } from '../poll.service';
 import { ActivatedRoute } from '@angular/router';
 import * as CanvasJS from './../../../assets/canvasjs.min.js';
+import * as Pusher from './../../../assets/pusher.min.js';
 
 @Component({
   selector: 'app-poll-vote',
@@ -24,8 +25,8 @@ export class PollVoteComponent implements OnInit {
         console.log(this.poll);
 
         let dataPoints = [];
-        for(let option of this.poll.options) {
-            dataPoints.push({ label: option['name'], y: option['points'] + 10})
+        for (let option of this.poll.options) {
+          dataPoints.push({ label: option['name'], y: option['points'] + 10 })
         }
 
         let chart = new CanvasJS.Chart("chartContainer", {
@@ -40,8 +41,26 @@ export class PollVoteComponent implements OnInit {
             dataPoints: dataPoints
           }]
         });
-
         chart.render();
+
+        Pusher.logToConsole = true;
+
+        const pusher = new Pusher('17f5653de317564ed3b2', {
+          cluster: 'eu',
+          encrypted: true
+        });
+
+        const channel = pusher.subscribe('poll');
+        channel.bind('vote', function (data) {
+          dataPoints = dataPoints.map(x => {
+            if (x.label === data.os) {
+              x.y += data.points;
+            }
+
+            return x;
+          });
+          chart.render();
+        });
       })
   }
 
