@@ -1,0 +1,26 @@
+<div class="container">
+  <h1>Create new poll</h1>
+  <form #form="ngForm" (submit)="create()">
+    <div class="form-group">
+      <label for="email">Title</label>
+      <input type="text" class="form-control" id="title" name="title" [(ngModel)]="userInputData.title" #title="ngModel" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Options(Please provide your options separated by comma)</label>
+      <input type="text" class="form-control" id="options" name="options" [(ngModel)]="userInputData.options" #options="ngModel"
+        required>
+    </div>
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select *ngIf="categories" class="form-control" name="category" id="category" [(ngModel)]="userInputData.category" #category="ngModel">
+        <option *ngFor="let c of categories" value="{{c}}">{{c}}</option>
+      </select>
+    </div>
+    <!-- <div class="form-group">
+      <label for="password">Password</label>
+      <input type="text" class="form-control" id="password" name="password" [(ngModel)]="formData.password" #passowrd="ngModel"
+        required>
+    </div> -->
+    <button [disabled]="!form.valid" type="submit" class="btn btn-success">Create</button>
+  </form>
+</div>

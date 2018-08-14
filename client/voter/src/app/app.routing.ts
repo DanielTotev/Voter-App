@@ -5,12 +5,14 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { PollVoteComponent } from './poll/poll-vote/poll-vote.component';
 import { AuthGuard } from './guards/auth.guard';
+import { CreatePollComponent } from './poll/create-poll/create-poll.component';
 
 const appRoutes: Routes = [
     { path: "", component: PollAllComponent },
     { path: "login", component: LoginComponent },
     { path: "register", component: RegisterComponent },
-    { path: "poll/vote/:id", component: PollVoteComponent, canActivate: [ AuthGuard ] }
+    { path: "poll/vote/:id", component: PollVoteComponent, canActivate: [ AuthGuard ] },
+    { path: "poll/create", component: CreatePollComponent, canActivate: [ AuthGuard ]}
 ]
 
 

@@ -6,6 +6,7 @@ module.exports = (app) => {
     app.post('/user/register', CONTROLLERS.USER_CONTROLLER.register);
 
     app.post('/category/create', AUTH_CHECK, CONTROLLERS.CATEGORY_CONTROLLER.create);
+    app.get('/category/getAll', CONTROLLERS.CATEGORY_CONTROLLER.getCategoriesNames);
 
     app.post('/poll/create', AUTH_CHECK, CONTROLLERS.POLL_CONTROLLER.create);
     app.get('/poll/getAll', CONTROLLERS.POLL_CONTROLLER.getAll);

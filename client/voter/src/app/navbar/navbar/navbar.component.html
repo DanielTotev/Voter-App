@@ -18,6 +18,12 @@
       <li *ngIf="authService.isLoggedIn()" class="nav-item">
         <a class="nav-link" (click)="logout()">Logout</a>
       </li>
+      <li *ngIf="authService.isLoggedIn()" class="nav-item">
+        <a class="nav-link" routerLink="/poll/create">Create Poll</a>
+      </li>
+      <li *ngIf="authService.isLoggedIn()" class="nav-item">
+        <span class="nav-link">Hello, {{authService.user.username}}</span>
+      </li>
     </ul>
   </div>
 </nav>

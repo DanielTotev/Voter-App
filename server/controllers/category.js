@@ -15,5 +15,13 @@ module.exports = {
             .then(category => {
                 return res.status(200).json({ category: category, message: 'Success' });
             })
+    },
+
+    getCategoriesNames: (req, res) => {
+        Category.find({})
+            .then(categories => {
+                categories = categories.map(x => x.categoryTitle);
+                res.json(categories);
+            });
     }
 };
