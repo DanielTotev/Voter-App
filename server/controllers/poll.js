@@ -78,7 +78,7 @@ module.exports = {
 
                 poll.markModified('options');
                 poll.save(function (err) {
-                    if(err) throw new Error(err.message);
+                    if (err) throw new Error(err.message);
                     pusher.trigger('poll', 'vote', {
                         points: 1,
                         option: selectedOption
@@ -92,7 +92,27 @@ module.exports = {
         if (!req.user || req.user.roles[0] !== 'Admin') {
             return res.status(401).json({ message: 'Not authorized' });
         }
+        let id = req.params.id;
+        let poll = req.body;
 
+        Poll.findById(id)
+            .then(pollFromDb => {
+                if (!pollFromDb) {
+                    return res.status(400).json({ message: 'Poll not found!' });
+                }
+
+                pollFromDb.title = poll.title;
+                pollFromDb.options = poll.options;
+                pollFromDb.category = poll.category;
+
+                pollFromDb.save()
+                    .then(() => {
+                        return res.status(200).json({ message: 'Poll updated Successfully!' });
+                    });
+            })
+            .catch(err => {
+                console.warn(err);
+            })
     },
     deletePoll: (req, res) => {
         if (!req.user || req.user.roles[0] !== 'Admin') {

@@ -1,3 +1,26 @@
-<p>
-  poll-edit works!
-</p>
+<div class="container">
+  <h1>Edit poll</h1>
+  <form #form="ngForm" (submit)="edit()">
+    <div class="form-group">
+      <label for="email">Title</label>
+      <input type="text" class="form-control" id="title" name="title" [(ngModel)]="editData.title" #title="ngModel" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Options(Please provide your options separated by comma)</label>
+      <input type="text" class="form-control" id="options" name="options" [(ngModel)]="editData.options" #options="ngModel"
+        required>
+    </div>
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select *ngIf="categories" class="form-control" name="category" id="category" [(ngModel)]="editData.category" #category="ngModel">
+        <option *ngFor="let c of categories" value="{{c}}">{{c}}</option>
+      </select>
+    </div>
+    <!-- <div class="form-group">
+      <label for="password">Password</label>
+      <input type="text" class="form-control" id="password" name="password" [(ngModel)]="formData.password" #passowrd="ngModel"
+        required>
+    </div> -->
+    <button [disabled]="!form.valid" type="submit" class="btn btn-success">Edit</button>
+  </form>
+</div>

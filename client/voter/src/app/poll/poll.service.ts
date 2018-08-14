@@ -11,6 +11,7 @@ const VOTE : string = '/vote';
 const GET_CATEGORIES : string = 'http://localhost:1337/category/getAll';
 const CREATE_POLL = '/create';
 const DELETE_POLL = '/delete/'; //should provide id
+const EDIT_POLL = '/edit/';
 
 @Injectable({
     providedIn: 'root'
@@ -45,5 +46,15 @@ export class PollService {
 
     delete(id) {
         return this.http.delete(BASE_URL + DELETE_POLL + id);
+    }
+
+    edit(id, userInput: CreatePollModel) {
+        let options = userInput.options.split(',').map(x => ({ name: x, points: 0}));
+
+        return this.http.post(BASE_URL + EDIT_POLL + id, {
+            title: userInput.title,
+            options: options,
+            category: userInput.category
+        });
     }
 }
