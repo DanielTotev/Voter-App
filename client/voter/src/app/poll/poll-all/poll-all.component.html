@@ -30,12 +30,16 @@
                         <img src="./../../../assets/poll.jpg" />
                         <div class="pull-right">
                             <a *ngIf="authService.isLoggedIn()" routerLink="/poll/vote/{{p._id}}" class="btn btn-info">Vote</a>
+                            <span *ngIf="authService.isAdmin()" class="btn btn-success">Edit</span>
+                            <span *ngIf="authService.isAdmin()" (click)="deletePoll(p._id)" class="btn btn-danger">Delete</span>
                         </div>
                     </blockquote>
                 </div>
             </div>
         </div>
     </div>
+    <br>
+    <br>
     <pagination-controls id="polls" (pageChange)="pageChanged($event)" maxSize="9" directionLinks="true" autoHide="true" previousLabel="Previous"
         nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
     </pagination-controls>

@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { PollVoteComponent } from './poll/poll-vote/poll-vote.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { CreatePollComponent } from './poll/create-poll/create-poll.component';
+import { PollEditComponent } from './poll/poll-edit/poll-edit.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { CreatePollComponent } from './poll/create-poll/create-poll.component';
     PollAllComponent,
     PollVoteComponent,
     CreatePollComponent,
+    PollEditComponent,
   ],
   imports: [
     BrowserModule,

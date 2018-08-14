@@ -10,6 +10,7 @@ const GET_ALL : string = '/getALL';
 const VOTE : string = '/vote';
 const GET_CATEGORIES : string = 'http://localhost:1337/category/getAll';
 const CREATE_POLL = '/create';
+const DELETE_POLL = '/delete/'; //should provide id
 
 @Injectable({
     providedIn: 'root'
@@ -40,5 +41,9 @@ export class PollService {
             title: userInput.title,
             category: userInput.category
         });
+    }
+
+    delete(id) {
+        return this.http.delete(BASE_URL + DELETE_POLL + id);
     }
 }

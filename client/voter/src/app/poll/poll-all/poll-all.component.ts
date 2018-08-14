@@ -19,7 +19,7 @@ export class PollAllComponent implements OnInit {
   ngOnInit() {
     this.pollService.getAll()
       .subscribe(data => {
-        this.polls = data;
+        this.polls = data.reverse();
         this.initialPolls = data;
         console.log(this.polls);
       });
@@ -32,5 +32,13 @@ export class PollAllComponent implements OnInit {
 
   pageChanged(p) {
     this.page = p;
+  }
+
+  deletePoll(id) {
+    this.pollService.delete(id)
+      .subscribe(() => {
+        this.polls = this.polls.filter(x => x._id !== id);
+        this.initialPolls = this.initialPolls.filter(x => x._id !== id);
+      });
   }
 }
