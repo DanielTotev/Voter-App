@@ -18,7 +18,11 @@
         </div>
     </div>
     <div class="row space-top">
-        <div class="col-md-4 mt-3" *ngFor="let p of polls">
+        <div class="col-md-4 mt-3" *ngFor="let p of polls | paginate: {
+            id: 'polls',
+            itemsPerPage: pageSize,
+            currentPage: page
+        }">
             <div class="card text-white bg-primary">
                 <div class="card-body">
                     <p>{{p.title}}</p>
@@ -31,6 +35,8 @@
                 </div>
             </div>
         </div>
-
     </div>
+    <pagination-controls id="polls" (pageChange)="pageChanged($event)" maxSize="9" directionLinks="true" autoHide="true" previousLabel="Previous"
+        nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+    </pagination-controls>
 </div>

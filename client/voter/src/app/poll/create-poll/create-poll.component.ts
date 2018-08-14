@@ -17,7 +17,6 @@ export class CreatePollComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //here I should fetch the categories data
     this.pollService.getCategories()
       .subscribe(data => {
         this.categories = data;

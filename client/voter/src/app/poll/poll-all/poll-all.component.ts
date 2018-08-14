@@ -11,6 +11,8 @@ import { AuthService } from '../../auth/auth.service';
 export class PollAllComponent implements OnInit {
   polls: PollModel[];
   initialPolls: PollModel[];
+  pageSize = 3;
+  page = 1;
 
   constructor(private pollService: PollService, private authService: AuthService) { }
 
@@ -26,5 +28,9 @@ export class PollAllComponent implements OnInit {
   search(formData) {
     let category = formData['category'];
     this.polls = this.initialPolls.filter(x => x.category === category);
+  }
+
+  pageChanged(p) {
+    this.page = p;
   }
 }
