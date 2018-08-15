@@ -47,5 +47,6 @@ export class AuthService {
     private saveUser(data) {
         this.user = data['user'];
         this.authtoken = data['authtoken'];
+        console.log(this.user);
     }
 }

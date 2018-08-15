@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
     username: { type: mongoose.Schema.Types.String, required: REQUIRED_VALIDATION_MESSAGE, unique: true, minlength: 4 },
     salt: { type: mongoose.Schema.Types.String },
     hashedPass: { type: mongoose.Schema.Types.String },
+    votedPolls: [{ type: mongoose.Schema.Types.String, required: true }],
     roles: { type: [mongoose.Schema.Types.String] }
 });
 

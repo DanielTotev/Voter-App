@@ -4,6 +4,7 @@ import { PollService } from '../poll.service';
 import { ActivatedRoute } from '@angular/router';
 import * as CanvasJS from './../../../assets/canvasjs.min.js';
 import * as Pusher from './../../../assets/pusher.min.js';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-poll-vote',
@@ -13,11 +14,13 @@ import * as Pusher from './../../../assets/pusher.min.js';
 export class PollVoteComponent implements OnInit {
   poll: PollModel;
   selectedOption: string;
+  userHasVoted: boolean;
 
-  constructor(private pollService: PollService, private route: ActivatedRoute) { }
+  constructor(private pollService: PollService, private route: ActivatedRoute, private authService: AuthService) { }
 
   ngOnInit() {
     let id = this.route.snapshot.params.id;
+    this.userHasVoted = this.authService.user.votedPolls.includes(id);
     this.pollService.getById(id)
       .subscribe(data => {
         this.poll = data;
@@ -65,7 +68,11 @@ export class PollVoteComponent implements OnInit {
   }
 
   vote() {
-    this.pollService.vote(this.selectedOption, this.poll._id).subscribe();
+    this.pollService.vote(this.selectedOption, this.poll._id).subscribe(() => {
+      this.authService.user.votedPolls.push(this.poll._id);
+      this.userHasVoted = true;
+    });
+
   }
 
 }

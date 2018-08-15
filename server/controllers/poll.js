@@ -1,5 +1,6 @@
 const Poll = require('./../models/Poll');
 const Category = require('./../models/Category');
+const User = require('./../models/User');
 const Pusher = require('pusher');
 
 const pusher = new Pusher({
@@ -58,6 +59,11 @@ module.exports = {
                 if (!poll) {
                     return res.status(400).json({ message: 'This poll does not exist anymore' });
                 }
+                console.log(req.user.votedPolls);
+                if(req.user.votedPolls.includes(pollId)) {
+                    return res.status(400).json({ message: 'You have already voted for this poll' });
+                }
+                
                 let optionExists = false;
 
                 for (let option of poll.options) {
@@ -83,7 +89,13 @@ module.exports = {
                         points: 1,
                         option: selectedOption
                     });
-                    res.status(200).json({ message: 'Your vote has been accepted' });
+                    User.update({_id: req.user._id}, {$push: { votedPolls: poll._id}}, (err, data) => {
+                        if(err) {
+                            console.log(err);
+                        }
+                        res.status(200).json({ message: 'Your vote has been accepted' });
+
+                    });
                 });
             })
             .catch(err => console.log(err));
