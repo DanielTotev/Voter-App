@@ -1,7 +1,11 @@
 <div class="jumbotron">
     <div class="container">
         <h1>Search by category</h1>
-        <p>Search by category using the form below:</p>
+        <p>
+            Search by category using the form below!
+            <br>
+            <span>Aviable categories: {{categories}}</span>
+        </p>
         <form #form="ngForm" (submit)="search(form.value)">
             <input type="text" class="form-control" name="category" required ngModel>
             <button [disabled]="!form.valid" type="submit" class="btn btn-primary">Search</button>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PollModel } from '../models/poll.model';
 import { PollService } from '../poll.service';
 import { AuthService } from '../../auth/auth.service';
+import { CategoryService } from '../../category/category.service';
 
 @Component({
   selector: 'app-poll-all',
@@ -13,8 +14,9 @@ export class PollAllComponent implements OnInit {
   initialPolls: PollModel[];
   pageSize = 3;
   page = 1;
+  categories: string;
 
-  constructor(private pollService: PollService, private authService: AuthService) { }
+  constructor(private pollService: PollService, private authService: AuthService, private categoryService: CategoryService) { }
 
   ngOnInit() {
     this.pollService.getAll()
@@ -23,6 +25,11 @@ export class PollAllComponent implements OnInit {
         this.initialPolls = data;
         console.log(this.polls);
       });
+
+      this.categoryService.getCategories()
+        .subscribe(data => {
+          this.categories = data.join(',');
+        })
   }
 
   search(formData) {
