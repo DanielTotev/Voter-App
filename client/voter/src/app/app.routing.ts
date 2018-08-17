@@ -8,6 +8,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { CreatePollComponent } from './poll/create-poll/create-poll.component';
 import { PollEditComponent } from './poll/poll-edit/poll-edit.component';
 import { AdminGuard } from './guards/admin.guard';
+import { CategoryCreateComponent } from './category/category-create/category-create.component';
 
 const appRoutes: Routes = [
     { path: "", component: PollAllComponent },
@@ -15,7 +16,8 @@ const appRoutes: Routes = [
     { path: "register", component: RegisterComponent },
     { path: "poll/vote/:id", component: PollVoteComponent, canActivate: [ AuthGuard ] },
     { path: "poll/create", component: CreatePollComponent, canActivate: [ AuthGuard ]},
-    { path: "poll/edit/:id", component: PollEditComponent, canActivate: [ AdminGuard ]}
+    { path: "poll/edit/:id", component: PollEditComponent, canActivate: [ AdminGuard ]},
+    { path: "category/create", component: CategoryCreateComponent, canActivate: [ AdminGuard ]}
 ]
 
 

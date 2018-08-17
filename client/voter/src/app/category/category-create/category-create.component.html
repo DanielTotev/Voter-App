@@ -1,0 +1,10 @@
+<div class="container">
+<h1>Create category</h1>
+<form #form="ngForm" (submit)="create(form.value)">
+  <div class="form-group">
+    <label for="title">Category title:</label>
+    <input type="text" class="form-control" id="title" name="title" ngModel required>
+  </div>
+  <button [disabled]="!form.valid" type="submit" class="btn btn-success">Create</button>
+</form>
+</div>

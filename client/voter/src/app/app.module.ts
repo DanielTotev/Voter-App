@@ -17,6 +17,7 @@ import { PollVoteComponent } from './poll/poll-vote/poll-vote.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { CreatePollComponent } from './poll/create-poll/create-poll.component';
 import { PollEditComponent } from './poll/poll-edit/poll-edit.component';
+import { CategoryCreateComponent } from './category/category-create/category-create.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { PollEditComponent } from './poll/poll-edit/poll-edit.component';
     PollVoteComponent,
     CreatePollComponent,
     PollEditComponent,
+    CategoryCreateComponent,
   ],
   imports: [
     BrowserModule,
