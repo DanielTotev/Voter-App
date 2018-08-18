@@ -12,8 +12,8 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let poll of polls" class="table-warning">
-              <th scope="row">1</th>
+          <tr *ngFor="let poll of polls; let i=index" class="table-warning">
+              <th scope="row">{{i+1}}</th>
               <td>{{poll.title}}</td>
               <td>{{poll.category}}</td>
               <td>
@@ -38,8 +38,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let category of categories" class="table-warning">
-            <th scope="row">1</th>
+        <tr *ngFor="let category of categories; let i = index" class="table-warning">
+            <th scope="row">{{i + 1}}</th>
             <td>{{category}}</td>
             <td>
                 <span (click)="deleteCategory(category)" class="btn btn-danger btn-sm">Delete</span>
