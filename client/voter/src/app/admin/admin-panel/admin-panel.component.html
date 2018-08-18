@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+      <h2 class="m-1">All Polls –&nbsp;</h2> <a routerLink="/poll/create" class="btn btn-warning m-1"><strong>+</strong> Add
+      Poll</a>
+      <table class="table table-striped table-hover">
+          <thead>
+          <tr>
+              <th>#</th>
+              <th>Poll title</th>
+              <th>Category</th>
+              <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let poll of polls" class="table-warning">
+              <th scope="row">1</th>
+              <td>{{poll.title}}</td>
+              <td>{{poll.category}}</td>
+              <td>
+                  <a routerLink="/poll/edit/{{poll._id}}" class="btn btn-warning btn-sm">Edit</a>
+                  <span (click)="deletePoll(poll._id)" class="btn btn-danger btn-sm">Delete</span>
+              </td>
+          </tr>
+          </tbody>
+      </table>
+  </div>
+  <br>
+  <br>
+  <div class="row">
+    <h2 class="m-1">All Categories –&nbsp;</h2> <a routerLink="/category/create" class="btn btn-warning m-1"><strong>+</strong> Add
+    Category</a>
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let category of categories" class="table-warning">
+            <th scope="row">1</th>
+            <td>{{category}}</td>
+            <td>
+                <span (click)="deleteCategory(category)" class="btn btn-danger btn-sm">Delete</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>
