@@ -33,7 +33,7 @@ export class PollEditComponent implements OnInit {
   edit() {
     this.pollService.edit(this.id, this.editData)
       .subscribe(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/poll/all']);
       });
   }
 

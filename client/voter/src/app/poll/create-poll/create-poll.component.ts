@@ -28,7 +28,7 @@ export class CreatePollComponent implements OnInit {
   create() {
     this.pollService.createPoll(this.userInputData)
       .subscribe(data => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/poll/all']);
       });
   }
 }
