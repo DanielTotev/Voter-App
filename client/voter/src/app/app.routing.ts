@@ -17,7 +17,7 @@ const appRoutes: Routes = [
     { path: "", component: HomeComponent },
     { path: "login", component: LoginComponent },
     { path: "register", component: RegisterComponent },
-    { path: "poll", loadChildren: () => PollRoutingModule },
+    { path: "poll", loadChildren: () => PollRoutingModule, canActivate: [ AuthGuard ] },
     { path: "category/create", component: CategoryCreateComponent, canActivate: [ AdminGuard ]},
     { path: "admin", component: AdminPanelComponent, canActivate: [ AdminGuard ]}
 ]

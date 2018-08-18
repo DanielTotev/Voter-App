@@ -8,11 +8,12 @@ import { PollAllComponent } from './poll-all/poll-all.component';
 import { PollVoteComponent } from './poll-vote/poll-vote.component';
 import { PollEditComponent } from './poll-edit/poll-edit.component';
 import { CreatePollComponent } from './create-poll/create-poll.component';
+import { AdminGuard } from '../guards/admin.guard';
 
 const routes: Routes = [
     { path:"all", component: PollAllComponent },
     { path: "vote/:id", component: PollVoteComponent },
-    { path: "edit/:id", component: PollEditComponent },
+    { path: "edit/:id", component: PollEditComponent, canActivate: [ AdminGuard ] },
     { path: "create", component: CreatePollComponent }
 ]
 
