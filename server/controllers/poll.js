@@ -13,9 +13,9 @@ const pusher = new Pusher({
 
 module.exports = {
     create: (req, res) => {
-        if (!req.user || req.user.roles[0] !== 'Admin') {
-            return res.status(401).json({ message: 'Not authorized' });
-        }
+        // if (!req.user || req.user.roles[0] !== 'Admin') {
+        //     return res.status(401).json({ message: 'Not authorized' });
+        // }
 
         let poll = {};
         poll.title = req.body.title;
