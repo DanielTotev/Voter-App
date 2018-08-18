@@ -15,11 +15,16 @@
       <li *ngIf="!authService.isLoggedIn()" class="nav-item">
         <a class="nav-link" routerLink="/register">Register</a>
       </li>
-      <li *ngIf="authService.isLoggedIn()" class="nav-item">
-        <a class="nav-link" routerLink="/poll/create">Create Poll</a>
-      </li>
       <li *ngIf="authService.isAdmin()" class="nav-item">
           <a class="nav-link" routerLink="/category/create">Create Category</a>
+      </li>
+      <li *ngIf="authService.isLoggedIn()" (click)="expand()" [class]="dropdownLi">
+        <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown"
+         aria-haspopup="true" aria-expanded="false">Polls</a>
+          <div [class]="dropdownMenu" aria-labelledby="dropdown01">
+           <a class="dropdown-item"  routerLink="/poll/all">All Polls</a>
+           <a class="dropdown-item" routerLink="/poll/create">Create</a>
+          </div>
       </li>
       <li *ngIf="authService.isAdmin()" class="nav-item">
         <a class="nav-link" routerLink="/admin">Admin</a>

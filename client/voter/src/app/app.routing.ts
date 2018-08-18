@@ -10,14 +10,14 @@ import { PollEditComponent } from './poll/poll-edit/poll-edit.component';
 import { AdminGuard } from './guards/admin.guard';
 import { CategoryCreateComponent } from './category/category-create/category-create.component';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { HomeComponent } from './home/home.component';
+import { PollRoutingModule } from './poll/poll.routing';
 
 const appRoutes: Routes = [
-    { path: "", component: PollAllComponent },
+    { path: "", component: HomeComponent },
     { path: "login", component: LoginComponent },
     { path: "register", component: RegisterComponent },
-    { path: "poll/vote/:id", component: PollVoteComponent, canActivate: [ AuthGuard ] },
-    { path: "poll/create", component: CreatePollComponent, canActivate: [ AuthGuard ]},
-    { path: "poll/edit/:id", component: PollEditComponent, canActivate: [ AdminGuard ]},
+    { path: "poll", loadChildren: () => PollRoutingModule },
     { path: "category/create", component: CategoryCreateComponent, canActivate: [ AdminGuard ]},
     { path: "admin", component: AdminPanelComponent, canActivate: [ AdminGuard ]}
 ]
