@@ -16,6 +16,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { CategoryCreateComponent } from './category/category-create/category-create.component';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { HomeComponent } from './home/home.component';
+import { ProfileStatisticsComponent } from './profile-statistics/profile-statistics.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { HomeComponent } from './home/home.component';
     CategoryCreateComponent,
     AdminPanelComponent,
     HomeComponent,
+    ProfileStatisticsComponent,
   ],
   imports: [
     BrowserModule,

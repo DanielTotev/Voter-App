@@ -16,7 +16,10 @@ export class PollAllComponent implements OnInit {
   page = 1;
   categories: string;
 
-  constructor(private pollService: PollService, private authService: AuthService, private categoryService: CategoryService) { }
+  constructor(private pollService: PollService,
+    private authService: AuthService,
+    private categoryService: CategoryService,
+  ) { }
 
   ngOnInit() {
     this.pollService.getAll()
@@ -26,10 +29,10 @@ export class PollAllComponent implements OnInit {
         console.log(this.polls);
       });
 
-      this.categoryService.getCategories()
-        .subscribe(data => {
-          this.categories = data.join(',');
-        })
+    this.categoryService.getCategories()
+      .subscribe(data => {
+        this.categories = data.join(',');
+      })
   }
 
   search(formData) {

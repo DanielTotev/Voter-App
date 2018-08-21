@@ -1,0 +1,11 @@
+<div class="container">
+  <br>
+  <br>
+  <ul class="list-group">
+    <li class="list-group-item">Username: {{authService.user.username}}</li>
+    <li class="list-group-item">Email: {{authService.user.email}}</li>
+    <li class="list-group-item">Polls created: {{pollCount}}</li>
+    <li class="list-group-item">People voted for your polls: {{pollVotes}}</li>
+    <li class="list-group-item">Polls voted for: {{authService.user.votedPolls.length}}</li>
+  </ul>
+</div>

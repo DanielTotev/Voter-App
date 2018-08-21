@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 const BASE_URL = 'http://localhost:1337/';
 const REGISTER_URL = `${BASE_URL}user/register`;
 const LOGIN_URL = `${BASE_URL}user/login`;
+const STATS = `${BASE_URL}user/stats`;
 
 
 @Injectable({
@@ -29,6 +30,10 @@ export class AuthService {
                 this.saveUser(data);
                 this.router.navigate(['/']);
             });
+    }
+
+    getStats() {
+        return this.http.get(STATS);
     }
 
     isLoggedIn() {

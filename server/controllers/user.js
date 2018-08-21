@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const User = require('./../models/User');
 const encryption = require('./../utils/encryption');
+const Poll = require('./../models/Poll');
 
 module.exports = {
     register: (req, res) => {
@@ -68,5 +69,24 @@ module.exports = {
                 let token = jwt.sign({ payload }, 's0m3 r4nd0m str1ng');
                 res.status(200).send({ user: user, authtoken: token, message: 'Logged in successfully!' });
             });
+    },
+
+    getStats: async (req, res) => {
+        let username = req.user.username;
+        let polls = await Poll.find({author: username});
+        let totalVotes = 0;
+        let pollsCount;
+        if(polls.length === 0) {
+            pollsCount = 'No polls created yet!';
+        } else {
+            for(let poll of polls) {
+                for(let option of poll.options) {
+                    totalVotes += option.points;
+                }
+            }
+            pollsCount = polls.length;
+        }
+
+        res.status(200).send({ pollsCount: pollsCount, totalVotes: totalVotes})
     }
 };
