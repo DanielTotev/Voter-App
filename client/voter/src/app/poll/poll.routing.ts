@@ -9,12 +9,14 @@ import { PollVoteComponent } from './poll-vote/poll-vote.component';
 import { PollEditComponent } from './poll-edit/poll-edit.component';
 import { CreatePollComponent } from './create-poll/create-poll.component';
 import { AdminGuard } from '../guards/admin.guard';
+import { PollDeleteComponent } from './poll-delete/poll-delete.component';
 
 const routes: Routes = [
     { path:"all", component: PollAllComponent },
     { path: "vote/:id", component: PollVoteComponent },
     { path: "edit/:id", component: PollEditComponent, canActivate: [ AdminGuard ] },
-    { path: "create", component: CreatePollComponent }
+    { path: "create", component: CreatePollComponent },
+    { path: "delete/:id", component: PollDeleteComponent }
 ]
 
 @NgModule({
@@ -22,7 +24,8 @@ const routes: Routes = [
         PollAllComponent,
         PollVoteComponent,
         PollEditComponent,
-        CreatePollComponent
+        CreatePollComponent,
+        PollDeleteComponent
     ],
     imports: [
         CommonModule,

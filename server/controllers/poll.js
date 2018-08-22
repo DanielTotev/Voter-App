@@ -21,7 +21,7 @@ module.exports = {
         poll.title = req.body.title;
         poll.options = req.body.options;
         poll.category = req.body.category;
-        poll.author = user.username;
+        poll.author = req.user.username;
 
         if (!poll.title || poll.title === '') {
             return res.status(400).json({ message: 'Title is required' });

@@ -44,11 +44,11 @@ export class PollAllComponent implements OnInit {
     this.page = p;
   }
 
-  deletePoll(id) {
-    this.pollService.delete(id)
-      .subscribe(() => {
-        this.polls = this.polls.filter(x => x._id !== id);
-        this.initialPolls = this.initialPolls.filter(x => x._id !== id);
-      });
-  }
+  // deletePoll(id) {
+  //   this.pollService.delete(id)
+  //     .subscribe(() => {
+  //       this.polls = this.polls.filter(x => x._id !== id);
+  //       this.initialPolls = this.initialPolls.filter(x => x._id !== id);
+  //     });
+  // }
 }
