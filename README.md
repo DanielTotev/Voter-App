@@ -7,5 +7,7 @@ App structue:
 
 
 Public part:(for unauthorized users) Home page, Register, Login page
+
 Private part:(for logged in users) All polls page, Poll create page, Poll vote page, User statistics page
+
 Administration:(for Admin user only) Edit poll page, Delete poll page, Create Category page, Admin panel
