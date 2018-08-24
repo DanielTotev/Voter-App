@@ -18,7 +18,7 @@
               <td>{{poll.category}}</td>
               <td>
                   <a routerLink="/poll/edit/{{poll._id}}" class="btn btn-warning btn-sm">Edit</a>
-                  <span (click)="deletePoll(poll._id)" class="btn btn-danger btn-sm">Delete</span>
+                  <a routerLink="/poll/delete/{{poll._id}}" class="btn btn-danger btn-sm">Delete</a>
               </td>
           </tr>
           </tbody>

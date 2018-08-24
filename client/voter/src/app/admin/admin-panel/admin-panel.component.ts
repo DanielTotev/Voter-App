@@ -28,17 +28,11 @@ export class AdminPanelComponent implements OnInit {
       })  
   }
 
-  deletePoll(id: string) {
-    this.pollService.delete(id)
-      .subscribe(() => {
-        this.polls = this.polls.filter(x => x._id !== id);
-      });
-  }
-
   deleteCategory(category: string) {
     this.categoryService.deleteCategory(category)
       .subscribe(() => {
         this.categories = this.categories.filter(x => x !== category);
+        this.polls = this.polls.filter(x => x.category !== category);
       });
   }
 }
