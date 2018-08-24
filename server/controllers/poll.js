@@ -115,6 +115,15 @@ module.exports = {
                 }
 
                 pollFromDb.title = poll.title;
+                //poll.options = poll.options.map(x => ({name: x.name, points: pollFromDb.options[x.name] || 0}))
+                for(let option of poll.options) {
+                    for(let primaryOption of pollFromDb.options) {
+                        if(option.name === primaryOption.name) {
+                            option.points = primaryOption.points;
+                            break;
+                        }
+                    }
+                }
                 pollFromDb.options = poll.options;
                 pollFromDb.category = poll.category;
 
